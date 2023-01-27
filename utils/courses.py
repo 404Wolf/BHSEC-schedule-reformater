@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from string import ascii_uppercase
 
 
@@ -107,7 +107,7 @@ class Course:
     bard_code: str | None
     doe_code: str | None
     credits: int | None
-    unparsed: str | None = None
+    unparsed: str | None = field(default=None, repr=False)
 
     def __str__(self):
         return f"{self.name}, {self.teachers}. [{self.type}:{self.doe_code}]"

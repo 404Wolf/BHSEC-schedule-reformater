@@ -100,11 +100,11 @@ class Student:
             Dict[str, str]: The list of strings. {<course-type>: <pretty-string>}
         """
         preferences = {}
-        sorted_courses = dict(sorted(tuple(self.courses.items())))
 
-        for course_type in sorted_courses:
+        for course_type, rankings in self.courses.items():
             pretty_string = f"{course_type}:\n"
-            for ranking in self.courses[course_type]:
+            sorted_rankings = sorted(rankings.items(), key=lambda x: x[0])
+            for ranking, course in sorted_rankings:
                 if ranking == 0:
                     continue
 

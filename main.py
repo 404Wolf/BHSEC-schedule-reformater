@@ -73,7 +73,7 @@ def main():
                 row_index + 1,
                 column_index,
                 pretty_course,
-                {"x_scale": 1.4, "y_scale": 4},
+                {"x_scale": 1.9, "y_scale": 4},
             )
 
     workbook.close()
