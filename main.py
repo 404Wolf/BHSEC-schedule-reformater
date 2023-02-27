@@ -9,16 +9,19 @@ import utils
 
 with open("config.json") as f:
     config = json.load(f)
+    print("Current Configuration:")
+    pprint(config)
+    input("Click enter to convert the spreadsheet.")
 
 
 def main():
-    with open("input.csv") as f:
+    with open(config["Input Filename"]) as f:
         inputs = pandas.read_csv(f)
 
     courses = utils.Courses.from_df(inputs)
     students = utils.Students.from_df(inputs, courses)
 
-    workbook = xlsxwriter.Workbook("output.xlsx")
+    workbook = xlsxwriter.Workbook(config["Output Filename"])
     worksheet = workbook.add_worksheet("PageStyle_Sheet1")
 
     worksheet.write(0, 0, "SchoolDbn")
