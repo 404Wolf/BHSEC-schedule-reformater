@@ -6,13 +6,25 @@ import xlsxwriter
 
 import utils
 
-
-with open("config.json") as f:
-    config = json.load(f)
-    print("Current Configuration:")
-    pprint(config)
-    input("Click enter to convert the spreadsheet.")
-
+try:
+    with open("config.json") as f:
+        config = json.load(f)
+        print("Current Configuration:")
+        pprint(config)
+        input("Click enter to convert the spreadsheet.")
+except FileNotFoundError:
+    print("No configuration file found. Creating one now.")
+    config = {
+        "Input Filename": "input.csv",
+        "Output Filename": "output.xlsx",
+        "School ID": "123456",
+        "School Year": "2021",
+        "Term ID": "1",
+    }
+    with open("config.json", "w") as f:
+        json.dump(config, f, indent=4)
+    print("Please fill out the configuration file and run the program again.")
+    exit()
 
 def main():
     with open(config["Input Filename"]) as f:
